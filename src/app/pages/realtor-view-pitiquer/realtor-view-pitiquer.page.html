@@ -1,0 +1,90 @@
+<div class="pitique-header">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-row class="center">
+        <ion-icon name="chevron-back-outline" class="back-button" (click)="navigateHome()"></ion-icon><ion-title>PITIQUER PROFILE</ion-title>
+    </ion-row>
+    </ion-toolbar>
+  </ion-header>
+  </div>
+  
+
+  <ion-content>
+    <div class="container-div">
+    <div class="left-div"></div>
+    <div class="main-div">
+     <ion-row class="card"> 
+        <ion-avatar class="card-avatar">
+          <img alt="Pitique Profile Image" src="https://image.shutterstock.com/image-photo/attractive-young-asian-woman-career-260nw-1686062533.jpg" />
+        </ion-avatar>
+        
+        <ion-text class="card-name">Tyler Boudelaire</ion-text> 
+        <span class="card-rating"><ion-icon name="star" class="card-star"></ion-icon> <span><ion-text>4.8</ion-text> <ion-text>(50)</ion-text></span></span>
+      </ion-row>
+      <br>
+      
+      <swiper-container style="width:100%;"
+      (slidechange)="swiperSlideChanged($event)"
+      [loop]="true"
+      [pagination]="true"
+      [zoom]="true" 
+      >
+        <swiper-slide>
+          <div class="swiper-zoom-container">
+          <img alt="Silhouette of mountains" class="card-image" src="https://www.photopilot.com/media/images/Manteca-2018_IDwfUUI.65965daa.fill-1800x1200.jpg" />
+        </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="swiper-zoom-container">
+          <img alt="Silhouette of mountains" class="card-image" src="https://www.photopilot.com/media/images/Manteca-2018_IDwfUUI.65965daa.fill-1800x1200.jpg" />
+        </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="swiper-zoom-container">
+          <img alt="Silhouette of mountains" class="card-image" src="https://www.photopilot.com/media/images/Manteca-2018_IDwfUUI.65965daa.fill-1800x1200.jpg" />
+        </div>
+        </swiper-slide>
+       
+      </swiper-container>
+      <br>
+      <div class="pitiquer-bio">
+      <ion-text>
+        With a passion for capturing stunning aerial views, I use drones and other advanced equipment to provide real estate agents and homeowners with high-quality, professional images and videos that truly set their properties apart.
+      </ion-text>
+    </div>
+      <br>
+      <ion-title>
+        Services Offered
+      </ion-title>
+      <br>
+      <ion-chip>
+        <ion-label>Aerial Photography</ion-label>
+      </ion-chip>
+      <ion-chip>
+        <ion-label>Aerial Photography + Edit</ion-label>
+      </ion-chip>
+      <ion-chip>
+        <ion-label>Aerial Videography</ion-label>
+      </ion-chip>
+      <ion-chip>
+        <ion-label>Aerial Videography + Edit</ion-label>
+      </ion-chip>
+      <ion-chip>
+        <ion-label>Aerial Neighborhood Amenities + Edit</ion-label>
+      </ion-chip>
+      <ion-chip>
+        <ion-label>Aerial Neighborhood Amenities</ion-label>
+      </ion-chip>
+      <br><br>
+      <div class="button">
+        <ion-button fill="solid" (click)="bookPitiquer()">BOOK NOW</ion-button>
+      </div>
+    </div>
+    
+   
+
+  </div>
+    <div class="right-div"></div>
+ 
+  </ion-content>
+

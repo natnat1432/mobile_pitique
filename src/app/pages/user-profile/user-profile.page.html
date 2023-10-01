@@ -1,0 +1,80 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<app-sidebar [page]="pageTitle"></app-sidebar>
+<div class="ion-page" id="main-content">
+  <div class="pitique-header">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-row class="center">
+       <ion-title>Your Profile</ion-title>
+      </ion-row>
+      </ion-toolbar>
+   
+    </ion-header>
+  </div>
+
+  <ion-content class="ion-padding">
+    <div class="container-div">
+      <div class="left-div"></div>
+      <div class="main-div">
+        <ion-button class="edit-profile-image" (click)="takePhoto()"><ion-icon name="pencil"></ion-icon></ion-button>
+        <ion-row class="center">
+    
+        <ion-avatar>
+          <img alt="Silhouette of a person's head"  [src]="(photoUrl != null)?photoUrl:serverAPI + '/api/'+user_type+'/'+email+'/profileimage'" />
+        </ion-avatar>
+  
+      </ion-row>
+
+      <div class="pitiquer-profile" *ngIf="user_type == 'pitiquer'">
+        <br><br>
+        <h5>Basic Info</h5>
+        <ion-input placeholder="Firstname" class="input" readonly [(ngModel)]="fname"></ion-input>
+        <ion-input placeholder="Middlename" class="input" readonly [(ngModel)]="mname"></ion-input>
+        <ion-input placeholder="Lastname" class="input" readonly [(ngModel)]="lname"></ion-input>
+        <ion-input placeholder="Email" class="input" readonly [(ngModel)]="email"></ion-input>
+        <br> 
+        <div class="flex">
+          <h5>Contact Info</h5>
+          <ion-button class="edit-profile-image" (click)="editPhone()"><ion-icon name="pencil"></ion-icon></ion-button>
+        </div>
+        
+        <ion-input placeholder="Phone" class="input" [(ngModel)]="phone" [disabled]="isEditPhone == false"></ion-input>
+
+        <ion-row class="center">
+          <ion-button fill="outline" expand="block" (click)="navigatePortfolio()" >View Portfolio</ion-button>
+        </ion-row> <br>
+        <ion-row class="center">
+          <ion-button fill="outline" expand="block" (click)="navigatePackages()" >View Packages</ion-button>
+        </ion-row> <br>
+        <ion-row class="center">
+          <ion-button fill="outline" expand="block" (click)="deleteAccount()" >Delete My Account</ion-button>
+        </ion-row> <br>
+      </div>
+
+      <div class="realtor-profile" *ngIf="user_type == 'realtor'">
+        <h5>Basic Info</h5>
+        <ion-input placeholder="Firstname" class="input" readonly [(ngModel)]="fname"></ion-input>
+        <ion-input placeholder="Middlename" class="input" readonly [(ngModel)]="mname"></ion-input>
+        <ion-input placeholder="Lastname" class="input" readonly [(ngModel)]="lname"></ion-input>
+        <br>
+        <ion-input placeholder="Birthdate" class="input" readonly [(ngModel)]="birthdate"></ion-input>
+        <br>
+        <div class="flex">
+          <h5>Contact Info</h5>
+          <ion-button class="edit-profile-image" (click)="editPhone()"><ion-icon name="pencil"></ion-icon></ion-button>
+        </div>
+        
+        <ion-input placeholder="Phone" class="input" [(ngModel)]="phone" [disabled]="isEditPhone == false"></ion-input>
+        <br>
+        <ion-row class="center">
+          <ion-button fill="outline" expand="block" (click)="deleteAccount()" >Delete My Account</ion-button>
+        </ion-row> <br>
+      </div>
+      </div>
+      <div class="right-div"></div>
+    </div>
+  </ion-content>
+</div>

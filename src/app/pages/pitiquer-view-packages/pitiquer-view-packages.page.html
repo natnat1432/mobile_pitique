@@ -1,0 +1,46 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<app-sidebar [page]="pageTitle"></app-sidebar>
+<div class="ion-page" id="main-content">
+  <div class="pitique-header">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <!-- <ion-menu-button></ion-menu-button> -->
+          <ion-icon name="chevron-back-outline" class="back-button" (click)="navigateProfile()"></ion-icon>
+
+        </ion-buttons>
+        <ion-row class="center">
+          <ion-title>Your Packages</ion-title>
+        </ion-row>
+      </ion-toolbar>
+
+    </ion-header>
+  </div>
+
+  <ion-content class="ion-padding">
+    <div class="container-div">
+      <div class="left-div"></div>
+      <div class="main-div">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Card Title</ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content>
+            Here's a small text description for the card content. Nothing more, nothing less.
+          </ion-card-content>
+    
+          <ion-button fill="clear">View</ion-button>
+          <ion-button fill="clear">Delete</ion-button>
+        </ion-card>
+
+        <ion-fab slot="fixed" vertical="bottom" horizontal="end" (click)="addPackage()">
+          <ion-fab-button>
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </div>
+      <div class="right-div"></div>
+    </div>
+  </ion-content>
+</div>

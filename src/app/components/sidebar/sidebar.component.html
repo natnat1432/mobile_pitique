@@ -1,0 +1,44 @@
+<ion-menu contentId="main-content">
+
+  <ion-content>
+    <div class="upper-menu">
+      <br>
+      <ion-row class="center" id="menu-logo"><img src="assets\icon\pitique_flex_white.svg" class="pitique-logo-landing"></ion-row>
+      <br>
+      <ion-row>
+      <ion-col id="avatar-col">
+    <ion-avatar>
+      <img alt="Silhouette of a person's head" [src]="serverAPI + '/api/'+user_type+'/'+email+'/profileimage'" />
+    </ion-avatar>
+  </ion-col>
+</ion-row>
+  <ion-row>
+  <ion-col id="name-col">
+    <ion-list>
+    <ion-text><h5 id="menu-name"><span>{{fname}}</span><span>{{mname}}</span><span>{{lname}}</span></h5></ion-text>
+    <ion-text class="menu-user-type" *ngIf="user_type == 'pitiquer'"><h5><ion-icon name="camera"></ion-icon> Pitiquer</h5></ion-text>
+    <ion-text class="menu-user-type" *ngIf="user_type == 'realtor'"><h5><ion-icon name="accessibility"></ion-icon> Realtor</h5></ion-text>
+  </ion-list>
+  </ion-col>
+  </ion-row>
+</div>
+  <br>
+  <ion-list id="menu-actions" lines="none">
+    <ion-item (click)="navigateHome()">
+      <ion-label [class]="(page) == 'home'?'selected-menu':''"><ion-text><ion-icon name="home"></ion-icon> Home</ion-text></ion-label>
+    </ion-item>
+    <ion-item (click)="navigateProfile()">
+      <ion-label [class]="(page) == 'profile'?'selected-menu':''"><ion-text><ion-icon name="person"></ion-icon> Profile</ion-text></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label><ion-text><ion-icon name="document-text"></ion-icon> Transactions</ion-text></ion-label>
+    </ion-item>
+    <br><br><br><br>
+    <ion-item (click)="logout()">
+      <ion-label><ion-text><ion-icon name="log-out"></ion-icon> Log out</ion-text></ion-label>
+    </ion-item>
+
+  </ion-list>
+
+  </ion-content>
+</ion-menu>

@@ -1,0 +1,52 @@
+
+<app-loading *ngIf="isLoading"></app-loading>
+<div class="pitique-header">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-row class="center">
+        <ion-icon name="chevron-back-outline" class="back-button" (click)="navigateRegistration()"></ion-icon><ion-title>ACCOUNT DETAILS</ion-title>
+    </ion-row>
+    </ion-toolbar>
+  </ion-header>
+  </div>
+  
+  <ion-content [fullscreen]="true">
+ 
+  <div class="form">
+    <br>
+    <ion-row class="center">
+      <ion-text><h3>Account Info</h3></ion-text>
+    </ion-row>
+    <br>
+    <ion-row class="center">
+      <input type="text" placeholder="Email" [(ngModel)]="email">
+    </ion-row>
+    <br>
+    <ion-row class="center">
+      <input type="password" placeholder="Password" [(ngModel)]="password">
+    </ion-row>
+    <br>
+    <ion-row class="center">
+      <input type="password" placeholder="Confirm Password" [(ngModel)]="confirmPassword">
+    </ion-row>
+    <br>
+    <!-- <ion-row class="center">
+      <ion-text><h3>Account Type</h3></ion-text>
+    </ion-row>
+    <ion-row class="center">
+      <input type="text" placeholder="Select Account Type" readonly id="open-account-type" [(ngModel)]="accountType">
+    </ion-row> -->
+    <br><br><br>
+    <ion-row class="center">
+      <ion-button fill="outline" (click)="continueRegistration()">CONTINUE</ion-button>
+    </ion-row>
+    <br><br><br>
+    <ion-row class="center">
+      <ion-text>Already have an account?<span class="link" (click)="navigateLogin()"><b>Log in</b></span></ion-text>
+    </ion-row>
+  </div>
+
+  <!-- <ion-picker trigger="open-account-type" [columns]="accountColumns" [buttons]="accountButtons"></ion-picker> -->
+  
+  </ion-content>
+  

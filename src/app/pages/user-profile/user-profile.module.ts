@@ -1,0 +1,26 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { IonicModule } from '@ionic/angular';
+
+import { UserProfilePageRoutingModule } from './user-profile-routing.module';
+
+import { UserProfilePage } from './user-profile.page';
+
+import { SidebarComponentModule } from 'src/app/components/sidebar/sidebar.module';
+
+import { LoadingComponentModule } from 'src/app/components/loading/loading.module';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    UserProfilePageRoutingModule,
+    SidebarComponentModule,
+    LoadingComponentModule
+  ],
+  declarations: [UserProfilePage]
+})
+export class UserProfilePageModule {}

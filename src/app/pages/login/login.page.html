@@ -1,0 +1,32 @@
+<ion-content [fullscreen]="true">
+  <app-loading *ngIf="isLoading"></app-loading>
+  <div class="background-login">
+    <br><br><br>
+    <ion-row class="center"><img src="assets\icon\pitique_login_icon.svg" id="pitique-logo-login"></ion-row>
+    <br><br><br>
+
+  </div>
+  <div class="login-form">
+   
+    <ion-row class="center">
+    <h1><b>Login</b></h1>
+    </ion-row>
+    <br>  
+    <ion-row class="center">
+      <input type="text" placeholder="Email" [(ngModel)]="email">
+    </ion-row>
+    <br>
+    <ion-row class="center">
+      <input type="password" placeholder="Password" [(ngModel)]="pass">
+    </ion-row>
+  </div>
+  <div id="login-button">
+    <ion-button fill="solid" (click)="loginAccount()">LOGIN</ion-button>
+  </div>
+
+  <br><br>
+  <ion-row class="center">
+    <ion-text>New to Pitique?<span class="link" (click)="navigateSignup()"><b>Register</b></span></ion-text>
+  </ion-row>
+
+</ion-content>

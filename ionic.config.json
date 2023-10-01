@@ -1,0 +1,7 @@
+{
+  "name": "Pitique",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

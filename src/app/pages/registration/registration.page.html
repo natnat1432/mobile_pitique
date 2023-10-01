@@ -1,0 +1,61 @@
+<div class="pitique-header">
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-row class="center">
+      <ion-icon name="chevron-back-outline" class="back-button" (click)="navigateLanding()"></ion-icon><ion-title>PERSONAL DETAILS</ion-title>
+  </ion-row>
+  </ion-toolbar>
+</ion-header>
+</div>
+
+<ion-content [fullscreen]="true">
+<div class="form">
+  <br>
+  <ion-row class="center">
+    <ion-text><h3>Basic Info</h3></ion-text>
+  </ion-row>
+  <br>
+  <ion-row class="center">
+    <input type="text" placeholder="Firstname"  [(ngModel)]="firstname">
+  </ion-row>
+  <br>
+  <ion-row class="center">
+    <input type="text" placeholder="Middlename" [(ngModel)]="middlename">
+  </ion-row>
+  <br>
+  <ion-row class="center">
+    <input type="text" placeholder="Lastname" [(ngModel)]="lastname">
+  </ion-row>
+  <br>
+  <ion-row class="center">
+    <input type="text" placeholder="Phone Number" [(ngModel)]="phone">
+  </ion-row>
+  <br>
+  <ion-row class="center">
+    <ion-text><h3>Birthdate</h3></ion-text>
+  </ion-row>
+
+  <ion-row class="center">
+    <div class="birthdate">
+      <input [(ngModel)]="year" class="birthdate-year" type="text" placeholder="Year" readonly id="open-year">
+      <input [(ngModel)]="month" [disabled]="isMonthDisabled"  [ngStyle]="{'background-color': isMonthDisabled ? '#f0f0f0' : 'white'}" class="birthdate-month" type="text" placeholder="Month" readonly id="open-month">
+      <input [(ngModel)]="day" [disabled]="isDayDisabled"  [ngStyle]="{'background-color': isMonthDisabled ? '#f0f0f0' : 'white'}" class="birthdate-day" type="text" placeholder="Day" readonly id="open-day">
+     
+  </div>
+  </ion-row>
+  <br><br><br>
+  <ion-row class="center">
+    <ion-button fill="outline" (click)="continueRegistration()">CONTINUE</ion-button>
+  </ion-row>
+  <br><br><br>
+  <ion-row class="center">
+    <ion-text>Already have an account?<span class="link" (click)="navigateLogin()"><b>Log in</b></span></ion-text>
+  </ion-row>
+</div>
+
+<ion-picker trigger="open-month" [columns]="monthColumns" [buttons]="monthButtons"></ion-picker>
+<ion-picker trigger="open-day" [columns]="dayColumns" [buttons]="dayButtons"></ion-picker>
+<ion-picker trigger="open-year" [columns]="yearColumns" [buttons]="yearButtons"></ion-picker>
+
+
+</ion-content>

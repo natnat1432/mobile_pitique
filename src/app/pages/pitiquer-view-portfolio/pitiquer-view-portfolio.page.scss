@@ -1,0 +1,81 @@
+//Thumbnail Image CSS
+.image-thumbnail{
+    width:161px;
+    height:161px;
+  }
+
+.image-thumbnail img{
+    width:100%;
+    height:100%;
+    border-radius:5px;
+    object-fit:cover;
+}
+.add-thumbnail{
+    width:100%;
+    height:100%;
+    border-radius:5px;
+    object-fit:cover;
+    color:#26CBDF;
+    display:flex;
+    align-items: center;
+    background-color: rgb(228, 228, 228);
+}
+.add-thumbnail ion-icon{
+    width:50%;
+    height:50%;
+    border-radius:5px;
+    object-fit:cover;
+    margin:auto;
+}
+
+.gallery-skeletons{
+    width:161px;
+    height:161px;
+    border-radius:5px;
+}
+.image-gallery{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 161px);
+    grid-auto-rows: 161px;
+    grid-gap: 10px;
+    width: 100%;
+}
+
+.image-gallery-item{
+    grid-column: span 1;
+    grid-row: span 1;
+}
+ion-fab{
+
+    --color:white;
+}
+ion-fab-button{
+    --background: #26CBDF;
+    --background-activated: #26CBDF;
+    --color:white;
+    width:40px;
+    height:40px;
+}
+
+
+.one{
+    opacity:100%;
+}
+.two{
+    opacity: 84%;
+}
+.three{
+    opacity:68%;
+}
+.four{
+    opacity:52%;
+}
+.five{
+    opacity:36%;
+}
+.six {
+    opacity:20%;
+}
+.seven{
+    opacity:4%;
+}
