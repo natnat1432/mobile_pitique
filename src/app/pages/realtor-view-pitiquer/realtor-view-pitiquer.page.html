@@ -12,14 +12,14 @@
   <ion-content>
     <div class="container-div">
     <div class="left-div"></div>
-    <div class="main-div">
-     <ion-row class="card"> 
+    <div class="main-div" *ngIf="pitiquerData != null">
+     <ion-row class="card" > 
         <ion-avatar class="card-avatar">
-          <img alt="Pitique Profile Image" src="https://image.shutterstock.com/image-photo/attractive-young-asian-woman-career-260nw-1686062533.jpg" />
+          <img alt="Pitique Profile Image" [src]="serverAPI + '/api/pitiquer/'+pitiquerData.ptqr_email+'/profileimage'"  />
         </ion-avatar>
         
-        <ion-text class="card-name">Tyler Boudelaire</ion-text> 
-        <span class="card-rating"><ion-icon name="star" class="card-star"></ion-icon> <span><ion-text>4.8</ion-text> <ion-text>(50)</ion-text></span></span>
+        <ion-text class="card-name">{{pitiquerData.ptqr_fname}} {{pitiquerData.ptqr_mname}} {{pitiquerData.ptqr_lname}}</ion-text> 
+        <span class="card-rating"><ion-icon name="star" class="card-star"></ion-icon> <span><ion-text>{{pitiquerData.rating}}</ion-text> <ion-text>({{pitiquerData.totalratings}})</ion-text></span></span>
       </ion-row>
       <br>
       
@@ -29,27 +29,20 @@
       [pagination]="true"
       [zoom]="true" 
       >
-        <swiper-slide>
+        <swiper-slide *ngFor="let image of pitiquerData.images">
           <div class="swiper-zoom-container">
-          <img alt="Silhouette of mountains" class="card-image" src="https://www.photopilot.com/media/images/Manteca-2018_IDwfUUI.65965daa.fill-1800x1200.jpg" />
+          <img alt="Silhouette of mountains" class="card-image" [src]="serverAPI + '/api'+'/pitiquer/'+ pitiquerData.ptqr_email + '/portfolio/' + image "
+          loading="lazy" />
         </div>
         </swiper-slide>
-        <swiper-slide>
-          <div class="swiper-zoom-container">
-          <img alt="Silhouette of mountains" class="card-image" src="https://www.photopilot.com/media/images/Manteca-2018_IDwfUUI.65965daa.fill-1800x1200.jpg" />
-        </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="swiper-zoom-container">
-          <img alt="Silhouette of mountains" class="card-image" src="https://www.photopilot.com/media/images/Manteca-2018_IDwfUUI.65965daa.fill-1800x1200.jpg" />
-        </div>
-        </swiper-slide>
+   
        
       </swiper-container>
       <br>
       <div class="pitiquer-bio">
-      <ion-text>
-        With a passion for capturing stunning aerial views, I use drones and other advanced equipment to provide real estate agents and homeowners with high-quality, professional images and videos that truly set their properties apart.
+      <ion-text >
+        <span *ngIf="pitiquerData.ptqr_bio != null;">  {{pitiquerData.ptqr_bio}}</span> 
+        <span *ngIf="pitiquerData.ptqr_bio == null">No bio</span>
       </ion-text>
     </div>
       <br>
@@ -57,27 +50,27 @@
         Services Offered
       </ion-title>
       <br>
-      <ion-chip>
+      <ion-chip *ngIf="pitiquerData.ptqr_photog == 1">
         <ion-label>Aerial Photography</ion-label>
       </ion-chip>
-      <ion-chip>
+      <ion-chip *ngIf="pitiquerData.ptqr_photogedt == 1">
         <ion-label>Aerial Photography + Edit</ion-label>
       </ion-chip>
-      <ion-chip>
+      <ion-chip *ngIf="pitiquerData.ptqr_videog == 1">
         <ion-label>Aerial Videography</ion-label>
       </ion-chip>
-      <ion-chip>
+      <ion-chip *ngIf="pitiquerData.ptqr_videogedt == 1">
         <ion-label>Aerial Videography + Edit</ion-label>
       </ion-chip>
-      <ion-chip>
+      <ion-chip *ngIf="pitiquerData.ptqr_isamnty == 1">
         <ion-label>Aerial Neighborhood Amenities + Edit</ion-label>
       </ion-chip>
-      <ion-chip>
+      <ion-chip  *ngIf="pitiquerData.ptqr_isamntyedt == 1">
         <ion-label>Aerial Neighborhood Amenities</ion-label>
       </ion-chip>
       <br><br>
       <div class="button">
-        <ion-button fill="solid" (click)="bookPitiquer()">BOOK NOW</ion-button>
+        <ion-button fill="solid" (click)="bookPitiquer(ptqr_id)">BOOK NOW</ion-button>
       </div>
     </div>
     

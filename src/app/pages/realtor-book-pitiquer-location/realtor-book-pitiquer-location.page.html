@@ -1,8 +1,9 @@
+<app-loading *ngIf="isLoading"></app-loading>
 <div class="pitique-header">
   <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-row class="center">
-        <ion-icon name="chevron-back-outline" class="back-button"></ion-icon><ion-title>BOOKING</ion-title>
+        <ion-icon name="chevron-back-outline" class="back-button" (click)="viewPitiquer(ptqr_id)"></ion-icon><ion-title>BOOKING</ion-title>
     </ion-row>
     </ion-toolbar>
   </ion-header>
@@ -15,131 +16,249 @@
     <div class="main-div">
       <div class="breadcrumbs">
       <ion-breadcrumbs>
-        <ion-breadcrumb (click)="toggleFormLocation()">Location</ion-breadcrumb>
-        <!-- <ion-breadcrumb>Services</ion-breadcrumb>
-        <ion-breadcrumb>Schedule</ion-breadcrumb>
-        <ion-breadcrumb>Contact Info</ion-breadcrumb>
-        <ion-breadcrumb>Review</ion-breadcrumb> -->
+        <ion-breadcrumb (click)="toggleFormLocation()" [ngClass]="(form_location == true)?'selected':''" >Location</ion-breadcrumb>
+        <ion-breadcrumb (click)="toggleFormServices()" [ngClass]="(form_services == true)?'selected':''" *ngIf="formLocation.valid">Services</ion-breadcrumb>
+        <ion-breadcrumb (click)="toggleFormSchedule()" [ngClass]="(form_schedule == true)?'selected':''" *ngIf="formServices.valid">Schedule</ion-breadcrumb>
+        <ion-breadcrumb (click)="toggleFormContact()" [ngClass]="(form_contact == true)?'selected':''" *ngIf="formSchedule.valid">Contact Info</ion-breadcrumb>
+        <ion-breadcrumb  (click)="toggleFormReview()" [ngClass]="(form_review == true)?'selected':''" *ngIf="formContact.valid">Review</ion-breadcrumb>
       </ion-breadcrumbs>
     </div>
-    <!-- <div class="form-location" [ngClass]="{'active': form_location}">
+    <div class="form-location" [ngClass]="{'active': form_location}">
+      <form [formGroup]="formLocation">
     <div class="form">
+  
       <ion-row class="center">
-        <input type="text" placeholder="Street name" [(ngModel)]="street_name">
+        <input type="text" placeholder="Street name" formControlName="book_streetname">
       </ion-row>
       <br>
       <ion-row class="center">
-        <input type="text" placeholder="Unit no." [(ngModel)]="unit_no">
+        <input type="text" placeholder="Unit no." formControlName="book_unitno">
       </ion-row>
       <br>
       <ion-row class="center">
-        <input type="text" placeholder="City" [(ngModel)]="city">
+        <input type="text" placeholder="City" formControlName="book_city">
       </ion-row>
       <br>
       <ion-row class="center">
-        <input type="text" placeholder="Province" [(ngModel)]="province">
+        <input type="text" placeholder="Province" formControlName="book_province">
       </ion-row>
       <br>
       <ion-row class="center">
-        <input type="text" placeholder="Postal code" [(ngModel)]="postal_code">
+        <input type="text" placeholder="Postal code" formControlName="book_postal">
       </ion-row>
       <br>
       <ion-row class="center">
-        <input type="text" placeholder="Property size" [(ngModel)]="property_size">
+        <input type="text" placeholder="Property size" formControlName="book_propertysize">
       </ion-row>
       <br>
       <ion-row class="center">
         <div class="form-notes">
-        <ion-textarea placeholder="Notes to Pitiquer" [(ngModel)]="notes_pitiquer"></ion-textarea>
+        <ion-textarea placeholder="Notes to Pitiquer" formControlName="book_notes"></ion-textarea>
       </div>
       </ion-row>
       <br>
     </div>
       <br><br><br>
       <ion-row class="center">
-        <ion-button fill="outline" (click)="toggleFormLocationNext()">NEXT</ion-button>
+        <ion-button fill="outline" (click)="toggleFormServices()" [disabled]="!formLocation.valid">NEXT</ion-button>
       </ion-row>
-    </div> -->
-
-    <div class="form-services" [ngClass]="{'active': form_services}">
-      <ion-checkbox class="choices" [(ngModel)]="isChecked" >
-        <div class="choices-content">
-          <div class="image">
-            <img src="https://placehold.co/600x400" alt="">
-          </div>
-          <div class="text">
-           <h3>Aerial Photography</h3> 
-           <p>Php 8,000.00</p>
-          </div>
-        </div>
-      </ion-checkbox>  
-      <ion-checkbox class="choices" >
-        <div class="choices-content">
-          <div class="image">
-            <img src="https://placehold.co/600x400" alt="">
-          </div>
-          <div class="text">
-           <h3>Aerial Photography + Edit</h3> 
-           <p>Php 9,000.00</p>
-          </div>
-        </div>
-      </ion-checkbox>  
-      <ion-checkbox class="choices" >
-        <div class="choices-content">
-          <div class="image">
-            <img src="https://placehold.co/600x400" alt="">
-          </div>
-          <div class="text">
-           <h3>Aerial Videography</h3> 
-           <p>Php 10,000.00</p>
-          </div>
-        </div>
-      </ion-checkbox>  
-      <ion-checkbox class="choices" >
-        <div class="choices-content">
-          <div class="image">
-            <img src="https://placehold.co/600x400" alt="">
-          </div>
-          <div class="text">
-           <h3>Aerial Videography + Edit</h3> 
-           <p>Php 11,000.00</p>
-          </div>
-        </div>
-      </ion-checkbox>  
-      <ion-checkbox class="choices" >
-        <div class="choices-content">
-          <div class="image">
-            <img src="https://placehold.co/600x400" alt="">
-          </div>
-          <div class="text">
-           <h3>Aerial Neighborhood Amenities</h3> 
-           <p>Php 15,000.00</p>
-          </div>
-        </div>
-      </ion-checkbox>  
-      <ion-checkbox class="choices" >
-        <div class="choices-content">
-          <div class="image">
-            <img src="https://placehold.co/600x400" alt="">
-          </div>
-          <div class="text">
-           <h3>Aerial Neighborhood Amenities + Edit</h3> 
-           <p>Php 16,000.00</p>
-          </div>
-        </div>
-      </ion-checkbox>  
-
+    </form>
     </div>
+
+    <div class="form-services"  [ngClass]="{'active': form_services}">
+      <h3>Select Services</h3>
+      <form [formGroup]="formServices">
+        <ion-radio-group  formControlName="pkg_id"  [allowEmptySelection]="true">
+      <ion-radio class="choices" (click)="toggleSelectPackages(index)" [value]="package.pkg_id" *ngFor="let package of packages; let index=index"  >
+        <div class="choices-content">
+      
+          <div class="text">
+           <h3>{{package.pkg_name}}</h3> 
+           <p>Php {{package.pkg_min_price}}</p>
+           <p>Description:</p>
+           <p class="included">{{package.pkg_desc}}</p>
+           <p>Included services:</p>
+           <p class="included">
+            <span *ngIf="package.pkg_isphotog"> 
+              <ion-chip>
+                <ion-icon name="camera" color="primary"></ion-icon>
+                <ion-label>Aerial Photography</ion-label>
+              </ion-chip>
+            </span>
+            <span *ngIf="package.pkg_isphotogedt">
+              <ion-chip>
+                <ion-icon name="camera" color="primary"></ion-icon>
+                <ion-label>   Aerial Photography + Edit</ion-label>
+                </ion-chip>
+            </span>
+            <span *ngIf="package.pkg_isvideog">
+              <ion-chip>
+                <ion-icon name="camera" color="primary"></ion-icon>
+                <ion-label>   Aerial Videography</ion-label>
+                </ion-chip>
+            </span>
+            <span *ngIf="package.pkg_isvideogedt">
+              <ion-chip>
+                <ion-icon name="camera" color="primary"></ion-icon>
+                <ion-label>   Aerial Videography + Edit</ion-label>
+                </ion-chip>
+            </span>
+            <span *ngIf="package.pkg_isamnty">
+              <ion-chip>
+                <ion-icon name="camera" color="primary"></ion-icon>
+                <ion-label> Aerial Neighborhood Amenities</ion-label>
+                </ion-chip>
+            </span>
+            <span *ngIf="package.pkg_isamntyedt">
+              <ion-chip>
+                <ion-icon name="camera" color="primary"></ion-icon>
+                <ion-label> Aerial Neighborhood Amenities + Edit</ion-label>
+                </ion-chip>
+            </span>
+          </p>
+          </div>
+        </div>
+      </ion-radio>  
+
+  </ion-radio-group>
+  </form>
     <ion-row>
       <div class="chosen-services-total">
         <ion-text><h5>Total</h5></ion-text>
-        <ion-text><h3> <b>Php 8,000.00</b></h3></ion-text>
+        <ion-text><h3> <b>Php {{totalPackageFee | number : '1.2-2'}}</b></h3></ion-text>
       </div>
     </ion-row>
-    <br>
     <ion-row class="center">
-      <ion-button fill="outline" (click)="toggleFormServicesNext()">NEXT</ion-button>
+      <ion-button fill="outline" (click)="toggleFormSchedule()" [disabled]="!formServices.valid">NEXT</ion-button>
     </ion-row>
+    </div>
+    <div class="form-schedule"  [ngClass]="{'active': form_schedule}">
+      <form [formGroup]="formSchedule">
+      <ion-row class="center">
+        <h3>Select Schedule</h3>
+      </ion-row>
+      <ion-row class="center">
+      <ion-datetime formControlName="book_date"></ion-datetime>
+    </ion-row>
+
+    <ion-row class="center">
+      <ion-button fill="outline" (click)="toggleFormContact()" [disabled]="!formSchedule.valid">NEXT</ion-button>
+    </ion-row>
+  </form>
+    </div>
+    <div class="form-contact"  [ngClass]="{'active': form_contact}">
+      <form [formGroup]="formContact">
+      <ion-row class="center">
+      <h3>Contact Info</h3>
+    </ion-row>
+      <div class="form">
+        <ion-row class="center">
+          <input type="text" placeholder="First name" formControlName="book_firstname">
+        </ion-row>
+        <br>
+        <ion-row class="center">
+          <input type="text" placeholder="Last name" formControlName="book_lastname">
+        </ion-row>
+        <br>
+        <ion-row class="center">
+          <input type="text" placeholder="Email" formControlName="book_email">
+        </ion-row>
+        <br>
+        <ion-row class="center">
+          <input type="text" placeholder="Phone" formControlName="book_phone">
+        </ion-row>
+        <br>
+        <ion-row class="center">
+          <input type="text" placeholder="Company" formControlName="book_company">
+        </ion-row>
+   
+        <br>
+      </div>
+    <ion-row class="center">
+      <ion-button fill="outline" (click)="toggleFormReview()" [disabled]="!formContact.valid">NEXT</ion-button>
+    </ion-row>
+  </form>
+    </div>
+
+    <div class="form-review"  [ngClass]="{'active': form_review}">
+      <ion-row class="center">
+      <h3>Review</h3>
+    </ion-row>
+      <div class="form">
+        <ion-list>
+          <ion-item-group>
+            <ion-item>
+              <ion-text><h4>Property Address</h4></ion-text>
+            </ion-item>
+        
+            <ion-item lines="none">
+              <ion-label>Street: {{formLocation.value.book_streetname}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>Unit No: {{formLocation.value.book_unitno}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>City: {{formLocation.value.book_city}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>Province: {{formLocation.value.book_province}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>Postal Code: {{formLocation.value.book_postal}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>Property Size: {{formLocation.value.book_propertysize}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>Notes to pitiquer: {{formLocation.value.book_notes}}</ion-label>
+            </ion-item>
+          </ion-item-group>
+          <ion-item-group>
+    
+            <ion-item>
+              <ion-text><h4>Appointment Details</h4></ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-label>Appointment Date: {{formSchedule.value.book_date}}</ion-label>
+            </ion-item>
+          </ion-item-group>
+          <ion-item-group>
+            <ion-item>
+              <ion-text><h4>Contact Info</h4></ion-text>
+            </ion-item>
+
+            <ion-item  lines="none">
+              <ion-label>Name: {{formContact.value.book_firstname}} {{formContact.value.book_lastname}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>Phone: {{formContact.value.book_phone}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>Email: {{formContact.value.book_email}}</ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>Company: {{formContact.value.book_company}}</ion-label>
+            </ion-item>
+          </ion-item-group>
+          <br><br>
+          <ion-item-group>
+            <ion-item>
+              <ion-text><h4>Selected package</h4></ion-text>
+            </ion-item>
+            <ion-item>
+              <ion-label>{{formServices.value.pkg_name}} <span class="price-package">Php {{formServices.value.book_totalfee | number : '1.2-2' }}</span></ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label><b>Total <span class="price-package">Php {{formServices.value.book_totalfee | number : '1.2-2' }}</span></b></ion-label>
+            </ion-item>
+          </ion-item-group>
+        </ion-list>
+      </div>
+    <ion-row class="center">
+      <ion-button fill="outline" (click)="submitRequest()">CONFIRM</ion-button>
+    </ion-row>
+    </div>
+
   </div>
     <div class="right-div"></div>
   </div>

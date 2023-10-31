@@ -51,6 +51,10 @@ const routes: Routes = [
     path: 'pitiquer-add-package',
     loadChildren: () => import('./pages/pitiquer-add-package/pitiquer-add-package.module').then( m => m.PitiquerAddPackagePageModule)
   },
+  {
+    path: 'pitiquer-view-package',
+    loadChildren: () => import('./pages/pitiquer-view-package/pitiquer-view-package.module').then( m => m.PitiquerViewPackagePageModule)
+  },
 ];
 
 @NgModule({

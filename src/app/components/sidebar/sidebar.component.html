@@ -33,6 +33,9 @@
     <ion-item>
       <ion-label><ion-text><ion-icon name="document-text"></ion-icon> Transactions</ion-text></ion-label>
     </ion-item>
+    <ion-item *ngIf="user_type == 'realtor' ">
+      <ion-label><ion-text><ion-icon name="bookmark"></ion-icon> Favorites</ion-text></ion-label>
+    </ion-item>
     <br><br><br><br>
     <ion-item (click)="logout()">
       <ion-label><ion-text><ion-icon name="log-out"></ion-icon> Log out</ion-text></ion-label>

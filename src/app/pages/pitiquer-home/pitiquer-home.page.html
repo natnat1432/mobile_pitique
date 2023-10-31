@@ -6,17 +6,62 @@
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
+        <ion-buttons slot="end" size="auto">
+          <ion-icon name="notifications" class="notificationIcon" id="open-notificationsModal" (click)="getNotifications()"></ion-icon> <ion-badge *ngIf="unreadNotifications>0" color="danger">{{unreadNotifications}}</ion-badge>
+        </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    </div>
-    
+  </div>
+
   <ion-content class="ion-padding">
     <div class="container-div">
-    <div class="left-div"></div>
-    <div class="main-div">
-
-  </div>
-    <div class="right-div"></div>
-  </div>
+      <div class="left-div"></div>
+      <div class="main-div">
+        <ion-modal trigger="open-notificationsModal" (willDismiss)="onWillDismiss($event)">
+          <ng-template>
+  
+            <ion-content class="ion-padding">
+              <ion-button (click)="cancel()" fill="outline" class="notificationClose"><ion-icon name="close"></ion-icon></ion-button>
+              <h3>Notifications</h3>
+              <br>
+              <br>
+              <ion-list *ngIf="notifications.length==0 && totalNotifications == -1">
+                <ion-list-header>
+                  <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+                </ion-list-header>
+                <ion-item *ngFor="let number of [0,1,2,3,4,5,6]">
+                  <ion-label>
+                    <h3>
+                      <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+                    </h3>
+                    <p>
+                      <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+                    </p>
+                    <p>
+                      <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+                    </p>
+                  </ion-label>
+                </ion-item>
+              </ion-list>
+              <div *ngIf="notifications.length!=0">
+                <ion-label>{{unreadNotifications}} unread notifications</ion-label>
+                <ion-card [color]="notifs['notification_status'] =='unread' ? 'light':'primary' " *ngFor="let notifs of notifications">
+                  <ion-card-header>
+             
+                    <ion-card-subtitle> <ion-label [color]="notifs['notification_status'] =='unread' ? 'dark':'light' " >{{notifs['notification_desc']}}</ion-label></ion-card-subtitle>
+                  </ion-card-header>
+                  </ion-card>
+                </div>
+                <div *ngIf="totalNotifications == 0">
+                  <ion-label>No notifications</ion-label>
+                </div>
+          
+  
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </div>
+      <div class="right-div"></div>
+    </div>
   </ion-content>
 </div>

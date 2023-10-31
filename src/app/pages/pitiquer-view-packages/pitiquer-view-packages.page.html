@@ -21,24 +21,28 @@
     <div class="container-div">
       <div class="left-div"></div>
       <div class="main-div">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>Card Title</ion-card-title>
-          </ion-card-header>
-        
-          <ion-card-content>
-            Here's a small text description for the card content. Nothing more, nothing less.
-          </ion-card-content>
-    
-          <ion-button fill="clear">View</ion-button>
-          <ion-button fill="clear">Delete</ion-button>
-        </ion-card>
+        <div class="empty-package" *ngIf="packages.length<1">
+          <h1>You have no packages</h1>
+        </div>
+        <div *ngFor="let package of packages">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{package.pkg_name}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              {{package.pkg_desc}}
+            </ion-card-content>
+            <ion-button fill="clear" (click)="viewPackage(package.pkg_id)">View</ion-button>
+            <ion-button fill="clear" (click)="deletePackage(package.pkg_id)" id="present-deletealert">Delete</ion-button>
+          </ion-card>
+        </div>
 
         <ion-fab slot="fixed" vertical="bottom" horizontal="end" (click)="addPackage()">
           <ion-fab-button>
             <ion-icon name="add"></ion-icon>
           </ion-fab-button>
         </ion-fab>
+
       </div>
       <div class="right-div"></div>
     </div>
